@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo-app';
+  title = 'todo app';
+
+  todoItem={
+    description:"walk the dog",
+    action:true
+  }
+
+  getTitle(){
+    return this.title;
+  }
 }
