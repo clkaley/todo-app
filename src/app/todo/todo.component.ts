@@ -5,11 +5,22 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent  {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
+  name="Aleyna"
+  //items=["item1","item2","item3"]
+  items=[
+    {
+      id:1,description:"walking dog",action:"yes"
+    },
+    {
+      id:2,description:"shopping dog",action:"no"
+    },
+    {
+      id:3,description:"homework dog",action:"yes"
+    },
+  ]
+ 
 
 }
