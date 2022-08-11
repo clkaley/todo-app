@@ -17,12 +17,20 @@
                 [(ngModel)]="displayAll"
                 type="checkbox" name="" id="displayAll" class="form-check-input">
                 <label for="displayAll" class="form-check-label">
-                    Hepsini göster
+                    Show ALL
                 </label>
             </div>
      
+            <div class="my-2">
+                {{displayCount()}} todos completed
+            </div>
 
-            <table class="table table-bordered" *ngIf="getItems().length>0">
+            <div class="alert alert-warning" *ngIf="getItems().length==0 else itemsTable">
+               All Todos Completed
+            </div>
+
+            <ng-template #itemsTable>
+                <table class="table table-bordered" >
                 <thead>
                     <tr>
                         <th></th>
@@ -37,10 +45,17 @@
                         <td>
                             <!-- <div *ngIf="item.action">Yes</div>
                             <div *ngIf="!item.action">No</div> -->
-                            <div [ngSwitch]="item.action">
+                            <!-- <div [ngSwitch]="item.action">
                                 <div *ngSwitchCase="true">Yes</div>
                                 <div *ngSwitchCase="false">No</div>
+                            </div> -->
+                            <div *ngIf="item.action;else noTemplate">
+                                Yes
                             </div>
+
+                            <ng-template #noTemplate>
+                                No
+                            </ng-template>
                         </td>
                         <td >
                             <input 
@@ -50,11 +65,10 @@
                     </tr>
                  
                 </tbody>
-            </table>
+                </table>
+            </ng-template>
+            
 
-            <div class="alert alert-warning" *ngIf="getItems().length==0">
-                Listede Eleman yok
-            </div>
         </div>
     </div>
 </div>
