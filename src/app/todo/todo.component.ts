@@ -9,21 +9,19 @@ import { Model } from '../model';
 })
 export class TodoComponent  {
 
+  displayAll:boolean=false;
+
   constructor() { }
   
   model=new Model();
-  message=""
 
-  // addItem(txtItem:any){
-  //   console.log("inputta ne var:",txtItem);
-  // }
 
   addItem(value:string){
     //inputun içi boş değilse listeye ekle
     if(value!==""){
       console.log("inputta ne var:",value);
       this.model.items.push({
-        description:value,action:"no"
+        description:value,action:false
       })
     }
     //inputun içi boşsa hataya düşür alert çıkart :)
@@ -34,7 +32,12 @@ export class TodoComponent  {
 
 
   getItems(){
-    return this.model.items
+    if(this.displayAll){
+      return this.model.items
+    }
+    else{
+      return this.model.items.filter(item=>!item.action);
+    }
   }
 
 }

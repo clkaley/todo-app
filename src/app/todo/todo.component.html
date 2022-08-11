@@ -12,13 +12,15 @@
                 (click)="addItem(txtItem.value); txtItem.value=''"
                 class="btn btn-outline-primary">Add</button>
             </div>
-                {{message}}
             <div class="form-check mb-3">
-                <input type="checkbox" name="" id="displayAll" class="form-check-input">
+                <input 
+                [(ngModel)]="displayAll"
+                type="checkbox" name="" id="displayAll" class="form-check-input">
                 <label for="displayAll" class="form-check-label">
-                    Show All
+                    Hepsini göster
                 </label>
             </div>
+     
 
             <table class="table table-bordered">
                 <thead>
@@ -33,6 +35,11 @@
                         <td>{{i+1}}</td>
                         <td>{{item.description}}</td>
                         <td>{{item.action}}</td>
+                        <td >
+                            <input 
+                            [(ngModel)]="item.action"
+                            type="checkbox" name="" id="">
+                        </td>
                     </tr>
                  
                 </tbody>
