@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-5 mx-auto">
-            <h3 class="bg-primary text-white p-3 m-2 text-center">{{name}}'sTodo List</h3>
+            <h3 class="bg-primary text-white p-3 m-2 text-center">{{model.name}}'sTodo List</h3>
 
             <div class="input-group mb-3">
                 <input type="text" class="form-control">
@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of items; let i=index">
+                    <tr *ngFor="let item of getItems(); let i=index">
                         <td>{{i+1}}</td>
                         <td>{{item.description}}</td>
                         <td>{{item.action}}</td>
@@ -33,11 +33,6 @@
                 </tbody>
             </table>
 
-            <ul>
-                <!-- i her birine verilecek isim of tan sonra gelen kısım array in ismi :) -->
-                <li *ngFor="let i of items">{{i.description}}</li>
-               
-            </ul>
         </div>
     </div>
 </div>

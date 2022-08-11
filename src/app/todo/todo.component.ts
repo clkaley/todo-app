@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Model } from '../model';
+//import { TodoItem } from '../todoitem';
 
 @Component({
   selector: 'app-todo',
@@ -8,19 +10,24 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent  {
 
   constructor() { }
+  
+  model=new Model();
+
+  /*
   name="Aleyna"
   //items=["item1","item2","item3"]
-  items=[
-    {
-      id:1,description:"walking dog",action:"yes"
-    },
-    {
-      id:2,description:"shopping dog",action:"no"
-    },
-    {
-      id:3,description:"homework dog",action:"yes"
-    },
-  ]
- 
+  items:TodoItem[]=[
+    //!interface li model için
+    {description:"walk",action:"yes"},
+    {description:"shopping",action:"no"},
+
+  //!constructor lı model için
+  //  new TodoItem("asdads","asdsa"),
+  //  new TodoItem("fsgsf","dsfds"),
+  //  new TodoItem("sfddf","sdfsd"),
+  ]*/
+  getItems(){
+    return this.model.items
+  }
 
 }
