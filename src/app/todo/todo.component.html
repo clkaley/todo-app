@@ -22,7 +22,7 @@
             </div>
      
 
-            <table class="table table-bordered">
+            <table class="table table-bordered" *ngIf="getItems().length>0">
                 <thead>
                     <tr>
                         <th></th>
@@ -34,7 +34,14 @@
                     <tr *ngFor="let item of getItems(); let i=index">
                         <td>{{i+1}}</td>
                         <td>{{item.description}}</td>
-                        <td>{{item.action}}</td>
+                        <td>
+                            <!-- <div *ngIf="item.action">Yes</div>
+                            <div *ngIf="!item.action">No</div> -->
+                            <div [ngSwitch]="item.action">
+                                <div *ngSwitchCase="true">Yes</div>
+                                <div *ngSwitchCase="false">No</div>
+                            </div>
+                        </td>
                         <td >
                             <input 
                             [(ngModel)]="item.action"
@@ -45,6 +52,9 @@
                 </tbody>
             </table>
 
+            <div class="alert alert-warning" *ngIf="getItems().length==0">
+                Listede Eleman yok
+            </div>
         </div>
     </div>
 </div>
