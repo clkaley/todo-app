@@ -7,12 +7,6 @@ export class Model{
     constructor(){
         this.name="Aleyna";
         this.items=[
-            {description:"walk",action:"yes"},
-            {description:"shopping",action:"no"},
-            {description:"walk",action:"yes"},
-            {description:"shopping",action:"no"},
-            {description:"walk",action:"yes"},
-            {description:"shopping",action:"no"},
         ]
     }
 }

@@ -12,6 +12,33 @@ export class TodoComponent  {
   constructor() { }
   
   model=new Model();
+  message=""
+
+  // addItem(txtItem:any){
+  //   console.log("inputta ne var:",txtItem);
+  // }
+
+  addItem(value:string){
+    //inputun içi boş değilse listeye ekle
+    if(value!==""){
+      console.log("inputta ne var:",value);
+      this.model.items.push({
+        description:value,action:"no"
+      })
+    }
+    //inputun içi boşsa hataya düşür alert çıkart :)
+    else{
+      alert("kanka todo gir")
+    }
+  }
+
+
+  getItems(){
+    return this.model.items
+  }
+
+}
+
 
   /*
   name="Aleyna"
@@ -26,8 +53,3 @@ export class TodoComponent  {
   //  new TodoItem("fsgsf","dsfds"),
   //  new TodoItem("sfddf","sdfsd"),
   ]*/
-  getItems(){
-    return this.model.items
-  }
-
-}

@@ -4,10 +4,15 @@
             <h3 class="bg-primary text-white p-3 m-2 text-center">{{model.name}}'sTodo List</h3>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control">
-                <button class="btn btn-outline-primary">Add</button>
+                <input
+                #txtItem
+                (keyup.enter)="addItem(txtItem.value); txtItem.value=''"
+                class="form-control">
+                <button 
+                (click)="addItem(txtItem.value); txtItem.value=''"
+                class="btn btn-outline-primary">Add</button>
             </div>
-
+                {{message}}
             <div class="form-check mb-3">
                 <input type="checkbox" name="" id="displayAll" class="form-check-input">
                 <label for="displayAll" class="form-check-label">
