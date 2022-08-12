@@ -5,12 +5,23 @@
 
             <div class="input-group mb-3">
                 <input
-                #txtItem
-                (keyup.enter)="addItem(txtItem.value); txtItem.value=''"
-                class="form-control">
+                
+                (keyup.enter)="addItem();"
+                class="form-control"
+                [(ngModel)]="inputText"
+                >
+               
+                <!--  [class]="{
+                 disabled :   inputText.length==0 ,
+                 'btn-secondary' : inputText.length==0 ,
+                 'btn-primary' : inputText.length>0
+                }" -->
                 <button 
-                (click)="addItem(txtItem.value); txtItem.value=''"
-                class="btn btn-outline-primary">Add</button>
+                (click)="addItem();"
+                class="btn "
+               [class]="getBtnClasses()"
+                >Add
+                </button>
             </div>
             <div class="form-check mb-3">
                 <input 
@@ -39,7 +50,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of getItems(); let i=index">
+                    <!--bool ifadelerde ==true yazmaay gerek yok ilk ifade zaten true döner  -->
+
+                    <!-- [class.bg-primary]="item.action"
+                    [class.bg-warning]="!item.action" -->
+                    <tr *ngFor="let item of getItems(); let i=index"
+                    [class]=" {'bg-primary':item.action,'bg-warning':!item.action}" >
                         <td>{{i+1}}</td>
                         <td>{{item.description}}</td>
                         <td>

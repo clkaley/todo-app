@@ -10,19 +10,21 @@ import { Model } from '../model';
 export class TodoComponent  {
 
   displayAll:boolean=false;
+  inputText:string="";
 
   constructor() { }
   
   model=new Model();
 
 
-  addItem(value:string){
+  addItem(){
     //inputun içi boş değilse listeye ekle
-    if(value!==""){
-      console.log("inputta ne var:",value);
+    if(this.inputText!==""){
+      console.log("inputta ne var:",this.inputText);
       this.model.items.push({
-        description:value,action:false
+        description:this.inputText,action:false
       })
+      this.inputText="";
     }
     //inputun içi boşsa hataya düşür alert çıkart :)
     else{
@@ -42,6 +44,14 @@ export class TodoComponent  {
   
   displayCount(){
     return this.model.items.filter(item=>item.action).length;
+  }
+
+  getBtnClasses(){
+    return {
+      disabled :  this.inputText.length==0 ,
+      'btn-secondary' :this.inputText.length==0 ,
+      'btn-primary' :this.inputText.length>0
+    }
   }
 
 }
