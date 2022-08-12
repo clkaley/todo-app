@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Model } from '../model';
+import { TodoItem } from '../todoitem';
 //import { TodoItem } from '../todoitem';
 
 @Component({
@@ -8,22 +9,30 @@ import { Model } from '../model';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent  {
-
-  displayAll:boolean=false;
-  inputText:string="";
-
-  constructor() { }
   
+  constructor() {
+    this.model.items=this.getItemsFromLocalStorage()
+   }
+
   model=new Model();
 
+  displayAll:boolean=false;
+
+  inputText:string="";
 
   addItem(){
     //inputun içi boş değilse listeye ekle
     if(this.inputText!==""){
-      console.log("inputta ne var:",this.inputText);
-      this.model.items.push({
+      let data={
         description:this.inputText,action:false
-      })
+      }
+      console.log("inputta ne var:",this.inputText);
+      this.model.items.push(data);
+      //!localStorage içinde sadece string bilgi saklanabiliyor
+      //!dizi olulturduk çünkü dizi oluşturmadığımızda her eklene data için ekleniyor ama eski data tutulmuyor bu sebeple array oluşturup hepsini ona eklicez
+      let items=this.getItemsFromLocalStorage();
+      items.push(data);
+      localStorage.setItem("todos",JSON.stringify(items));
       this.inputText="";
     }
     //inputun içi boşsa hataya düşür alert çıkart :)
@@ -32,6 +41,28 @@ export class TodoComponent  {
     }
   }
 
+  getItemsFromLocalStorage(){
+    let items:TodoItem[]=[];
+    let value=localStorage.getItem("todos");
+    if(value!=null){
+      items=JSON.parse(value);
+    }
+    return items;
+  }
+
+  onActionChanged(item:TodoItem){
+    //!localstorage daki bilgiler alındı.
+    let items=this.getItemsFromLocalStorage();
+    localStorage.clear();
+    items.forEach(i=>{
+      if(i.description==item.description){
+        i.action=item.action;
+      }
+    })
+    console.log(item);
+    localStorage.setItem("todos",JSON.stringify(items));
+    
+  }
 
   getItems(){
     if(this.displayAll){
@@ -53,6 +84,8 @@ export class TodoComponent  {
       'btn-primary' :this.inputText.length>0
     }
   }
+
+
 
 }
 

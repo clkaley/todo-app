@@ -11,7 +11,6 @@ export class Model{
             {description:"shopping",action:false },
             {description:"shopping",action:false },
             {description:"shopping",action:false },
-
         ]
     }
 }

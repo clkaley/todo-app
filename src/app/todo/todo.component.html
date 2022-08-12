@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-5 mx-auto">
-            <h3 class="bg-primary text-white p-3 m-2 text-center">{{model.name}}'sTodo List</h3>
+            <h3 class="bg-primary text-white p-3 m-2 text-center">{{model.name}}'s Todo List</h3>
 
             <div class="input-group mb-3">
                 <input
@@ -75,6 +75,7 @@
                         </td>
                         <td >
                             <input 
+                            (change)="onActionChanged(item)"
                             [(ngModel)]="item.action"
                             type="checkbox" name="" id="">
                         </td>
